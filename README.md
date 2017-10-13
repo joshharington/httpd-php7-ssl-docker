@@ -17,7 +17,7 @@ settings persist:
 
 VOLUMES:
 
-/var/www/php-app
+/var/www/html
   Where apache looks for your php application data. 
 
 
@@ -47,12 +47,12 @@ VOLUMES:
 So, run your data container something like:
 
     docker run -it --name=php-app-data \
-    -v /var/www/php-app \
+    -v /var/www/html \
     -v /usr/local/apache2/conf \
     -v /tmp/ssmtp.conf:/etc/ssmtp/ssmtp.conf\
     cassj/httpd-php7-ssl:0.1  /bin/bash
 
-      cd /var/www/php-app
+      cd /var/www/html
       printf "<?php\nphpinfo();\n?>\n" > index.php 
       chown apache:apache index.php
       exit
@@ -62,7 +62,7 @@ Now you can start an instance of the webserver that will use this
 data volume (the environment variables are optional - they have default
 values)
 
-  docker run --name=php-app\
+  docker run --name=html\
               -p 80:80\
               -p 443:443\
               -d\
