@@ -34,5 +34,4 @@ EXPOSE 443
 ENV SERVERNAME localhost
 ENV ADMINEMAIL root@localhost
 
-
-
+CMD tail -f /dev/null
